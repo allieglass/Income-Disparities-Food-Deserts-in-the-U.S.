@@ -1,16 +1,10 @@
 # Income-Disparities-Food-Deserts-in-the-U.S.
-A GitHub repo with the Streamlit link on the README for the deployed app.  Within the Repo you need to complete the following.
 
-1.) Reproducability and Code
-Code is standalone in a .py file or multiple .py files if you used pages and can be fully reproduced based on files in the Github.
-
-2.) Readme File
-
-Introduction: Domain problem characterization.
-What is the problem you want to solve?
+Introduction:
+Food deserts can be found all across the United States. Food deserts are geographical locations where low-income communities do not have access to a     store with affordable fresh foods. "Food desert" communitites tend to have worse health issues like higher obesity levels so it is important to provide access to fresh foods where possible. When trying to find food deserts, you will likely see lower (average) family incomes and higher average poverty rates. The idea behind this streamlit app is to be able to see which states and even which ethnicities experience more food deserts, or have high poverty rates which could lead to more food deserts.
 
 Data/operation abstraction design:
-How did you prepare your data?
+The Food Access Research Atlas Data (2019) was provided by the United States Department of Agriculture (USDA ERS). The data set is very large which means I had to turn it into a zip file for GitHub to be able to access it.
 
 Future work:
 What if any future work do you plan to keep on doing to improve your app.
