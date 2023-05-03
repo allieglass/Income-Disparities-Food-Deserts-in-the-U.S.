@@ -1,6 +1,6 @@
-# Income-Disparities-Food-Deserts-in-the-U.S.
+# Income Disparities & Food-Deserts in the U.S.
 
-**Introduction:**
+#### **Introduction:**
 Food deserts can be found all across the United States. Food deserts are geographical locations where low-income communities do not have access to a     store with affordable fresh foods. "Food desert" communitites tend to have worse health issues like higher obesity levels so it is important to provide access to fresh foods where possible. When trying to find food deserts, you will likely see lower (average) family incomes and higher average poverty rates. The idea behind this streamlit app is to be able to see which states and even which ethnicities experience more food deserts, or have high poverty rates which could lead to more food deserts. As a Health Informatics and Analytics masters student, this topic is important as it can show us where changes are needed, what health issues are being seen from these areas, and which populations experience food deserts the most. 
 
 **Data/operation abstraction design:**
