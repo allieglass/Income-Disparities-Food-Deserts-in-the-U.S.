@@ -15,48 +15,86 @@ food_data = load_data()
 
 st.header("**Income Disparities & Food Deserts in the U.S.**")
 
-st.markdown("Food Deserts are geographical locations where low-income communities do not have access to a store with affordable fresh foods.")
+st.markdown("Food Deserts are geographical locations where low-income communities do not have access to a store with affordable fresh foods. Choose from the pages on the left to see which states and which ethnicities have more food deserts and worse poverty rates than others.")
 
-tab1, tab2 = st.tabs(["Poverty Rates in the U.S.","Food Deserts in the U.S."])
+page_options = ["Poverty Rates in the U.S.", "Ethnicities by State in Food Deserts"]
+page = st.sidebar.selectbox("Choose from the options below:", page_options)
 
-with tab1:
-    num_states = st.slider('Number of states to display:', 1, len(food_data['State'].unique()), 10)
+if "Poverty Rates in the U.S." in page:
+    st.markdown("**Poverty Rates in the U.S.**")
+    
+    n_by_state = food_data[['State', 'PovertyRate']].groupby(['State']).mean().reset_index()
 
-    n_by_state = food_data.groupby('State')['PovertyRate'].mean().reset_index()
-
-    sorted_states = n_by_state.sort_values(by='PovertyRate', ascending=False)
-    top_states = sorted_states['State'].head(num_states).tolist()
-
-    top_data = food_data[food_data['State'].isin(top_states)]
-
-    chart = alt.Chart(top_data).mark_bar(color='orange').encode(
+    chart = alt.Chart(n_by_state).mark_bar(color='orange').encode(
         x='State:N',
         y=alt.Y('PovertyRate:Q', axis=alt.Axis(title='Average Poverty Rate', labels=False)),
         tooltip=[alt.Tooltip('State:N'), alt.Tooltip('PovertyRate:Q')]
     ).properties(
         width=600,
         height=600,
-        title=f'Top {num_states} states with highest Poverty Rate'
     )
     st.altair_chart(chart, use_container_width=True)
-
-with tab2: 
-    selected_state = st.selectbox('Select state', food_data['State'].unique())
-
-    state_data = food_data[food_data['State'] == selected_state]
-
-    sum_by_state_white = state_data['lawhite10'].sum()
-    sum_by_state_black = state_data['lablack10'].sum()
-    sum_by_state_hisp = state_data['lahisp10'].sum()
-    sum_by_state_asian = state_data['laasian10'].sum()
     
-    labels = ['White','Black','Hispanic','Asian']
-    values = [sum_by_state_white, sum_by_state_black, sum_by_state_hisp, sum_by_state_asian]
+if "Ethnicities by State in Food Deserts" in page:
+    st.markdown("**Ethnicities by State in Food Deserts**")
+    tab1, tab2, tab3= st.tabs(['1-mile from a grocery store', '10-miles from a grocery store', '20-miles from a grocery store'])
 
-    fig, ax = plt.subplots()
-    ax.bar(labels, values, color='orange')
-    ax.set_xlabel('Ethnicity')
-    ax.set_ylabel('  ')
-    ax.set_title('Ethnicities 10-miles from a grocery store in {}'.format(selected_state))
+    with tab1:
+        selected_state1 = st.selectbox('Select state', food_data['State'].unique(), key='tab1_selectbox')
 
-    st.pyplot(fig)
+        state_data1 = food_data[food_data['State'] == selected_state1]
+
+        sum_by_state_white1 = state_data1['lawhite1'].sum()
+        sum_by_state_black1 = state_data1['lablack1'].sum()
+        sum_by_state_hisp1 = state_data1['lahisp1'].sum()
+        sum_by_state_asian1 = state_data1['laasian1'].sum()
+    
+        labels1 = ['White','Black','Hispanic','Asian']
+        values1 = [sum_by_state_white1, sum_by_state_black1, sum_by_state_hisp1, sum_by_state_asian1]
+
+        fig1, ax = plt.subplots()
+        ax.bar(labels1, values1, color='orange')
+        ax.set_xlabel('Ethnicity')
+        ax.set_ylabel('  ')
+        ax.set_title('Ethnicities 1-mile from a grocery store in {}'.format(selected_state1))
+        st.pyplot(fig1)
+
+    with tab2:
+        selected_state10 = st.selectbox('Select state', food_data['State'].unique(), key='tab2_selectbox')
+
+        state_data10 = food_data[food_data['State'] == selected_state10]
+
+        sum_by_state_white10 = state_data10['lawhite10'].sum()
+        sum_by_state_black10 = state_data10['lablack10'].sum()
+        sum_by_state_hisp10 = state_data10['lahisp10'].sum()
+        sum_by_state_asian10 = state_data10['laasian10'].sum()
+    
+        labels10 = ['White','Black','Hispanic','Asian']
+        values10 = [sum_by_state_white10, sum_by_state_black10, sum_by_state_hisp10, sum_by_state_asian10]
+
+        fig10, ax = plt.subplots()
+        ax.bar(labels10, values10, color='orange')
+        ax.set_xlabel('Ethnicity')
+        ax.set_ylabel('  ')
+        ax.set_title('Ethnicities 10-miles from a grocery store in {}'.format(selected_state10))
+        st.pyplot(fig10)
+
+    with tab3:
+        selected_state20 = st.selectbox('Select state', food_data['State'].unique(), key='tab3_selectbox')
+
+        state_data20 = food_data[food_data['State'] == selected_state20]
+
+        sum_by_state_white20 = state_data20['lawhite20'].sum()
+        sum_by_state_black20 = state_data20['lablack20'].sum()
+        sum_by_state_hisp20 = state_data20['lahisp20'].sum()
+        sum_by_state_asian20 = state_data20['laasian20'].sum()
+    
+        labels20 = ['White','Black','Hispanic','Asian']
+        values20 = [sum_by_state_white20, sum_by_state_black20, sum_by_state_hisp20, sum_by_state_asian20]
+
+        fig20, ax = plt.subplots()
+        ax.bar(labels20, values20, color='orange')
+        ax.set_xlabel('Ethnicity')
+        ax.set_ylabel('  ')
+        ax.set_title('Ethnicities 10-miles from a grocery store in {}'.format(selected_state20))
+        st.pyplot(fig20)
