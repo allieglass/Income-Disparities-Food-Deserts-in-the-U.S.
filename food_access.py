@@ -15,7 +15,7 @@ food_data = load_data()
 
 st.header("**Income Disparities & Food Deserts in the U.S.**")
 
-st.markdown("Food Deserts are geographical locations where low-income communities do not have access to a store with affordable fresh foods. Choose from the pages on the left to see which states and which ethnicities have more food deserts and worse poverty rates than others.")
+st.markdown("Food Deserts are geographical locations where low-income communities do not have access to a store with affordable fresh foods. Choose from the dropdown on the left to see which states and which ethnicities have higher poverty rates and experience more food deserts.")
 
 page_options = ["Poverty Rates in the U.S.", "Ethnicities by State in Food Deserts"]
 page = st.sidebar.selectbox("Choose from the options below:", page_options)
